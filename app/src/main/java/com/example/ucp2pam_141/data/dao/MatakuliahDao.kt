@@ -15,7 +15,7 @@ interface MatakuliahDao {
 
     // get matakuliah
     @Query("SELECT * FROM matakuliah WHERE kode = :kode")
-    fun getMatakuliah(kode: String): Flow<Matakuliah> // Data diambil berdasarkan NIM
+    fun getMatakuliah(kode: String): Flow<Matakuliah> // Data diambil berdasarkan kode
 
     // Delete matakuliah
     @Delete
