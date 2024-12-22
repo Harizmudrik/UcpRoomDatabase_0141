@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2pam_141.data.entity.Matakuliah
 import com.example.ucp2pam_141.repository.RepositoryMatakuliah
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
@@ -79,5 +80,8 @@ class UpdateMatakuliahViewModel(
         updateUiState = updateUiState.copy(snackBarMessage = null)
     }
 
+    fun Matakuliah.toUiStateMatakuliah(): MatakuliahUIState = MatakuliahUIState(
+        matakuliahEvent = this.toDetailMatakuliahUiEvent()
+    )
 
 }
