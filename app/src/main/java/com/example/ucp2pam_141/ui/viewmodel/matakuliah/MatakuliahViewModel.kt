@@ -83,3 +83,15 @@ data class FormErrorState(
     }
 }
 
+
+
+//data class variable yang menyimpan
+//Event = TextField
+data class MatakuliahEvent(
+    val kode: String = "",
+    val nama: String = "",
+    val sks: String = "",
+    val semester: String = "",
+    val jenis: String = "",
+    val DosenPengampu: String = "",
+)
