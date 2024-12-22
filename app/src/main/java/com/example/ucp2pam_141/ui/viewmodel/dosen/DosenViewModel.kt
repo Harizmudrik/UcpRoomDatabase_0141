@@ -120,3 +120,10 @@ data class FormErrorState(
         return nidn == null && nama == null && jenisKelamin == null
     }
 }
+
+fun DosenEvent.toDosenEntity(): Dosen = Dosen(
+    nidn  = nidn,
+    nama = nama,
+    jenisKelamin = jenisKelamin,
+
+    )
