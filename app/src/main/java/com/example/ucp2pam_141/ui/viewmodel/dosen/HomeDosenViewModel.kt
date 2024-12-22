@@ -2,6 +2,7 @@ package com.example.ucp2pam_141.ui.viewmodel.dosen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2pam_141.data.entity.Dosen
 import com.example.ucp2pam_141.repository.RepositoryDosen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -44,3 +45,10 @@ class HomeDosenViewModel (
             )
         )
 }
+
+data class HomeUiState (
+    val listDosen: List<Dosen> = listOf(),
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
+    val errorMessage: String = ""
+)
