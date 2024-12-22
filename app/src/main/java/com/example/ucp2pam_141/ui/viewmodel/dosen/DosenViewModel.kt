@@ -127,3 +127,12 @@ fun DosenEvent.toDosenEntity(): Dosen = Dosen(
     jenisKelamin = jenisKelamin,
 
     )
+
+//data class variable yang menyimpan
+//Event = TextField
+data class DosenEvent(
+    val nidn: String = "",
+    val nama: String = "",
+    val jenisKelamin: String = "",
+
+    )
