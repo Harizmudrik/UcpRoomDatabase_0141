@@ -9,4 +9,6 @@ class DetailDosenViewModel(
     private val repositoryDosen: RepositoryDosen,
 ) : ViewModel() {
 
+    private val _nidn: String = checkNotNull(savedStateHandle[DestinasiDosenDetail.NIDN])
+
 }
