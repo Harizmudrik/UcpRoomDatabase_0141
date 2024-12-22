@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2pam_141.data.entity.Dosen
 import com.example.ucp2pam_141.repository.RepositoryDosen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -62,7 +63,7 @@ class DosenViewModel(private val repositoryDosen: RepositoryDosen) : ViewModel()
         }
     }
 
-    fun resetSnackBarMessage(){
+    fun resetSnackBarMessage() {
         uiState = uiState.copy(snackBarMessage = null)
     }
 
@@ -95,7 +96,14 @@ class DosenViewModel(private val repositoryDosen: RepositoryDosen) : ViewModel()
             )
         )
 
-
-
-
 }
+
+data class DosenUIState(
+    val listDosen: List<Dosen> = listOf(), // Daftar dosen
+    val isLoading: Boolean = false, // Status loading
+    val isError: Boolean = false, // Status error
+    val errorState: String = "", // Pesan error
+    val dosenEvent: DosenEvent = DosenEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage: String? = null,
+)
