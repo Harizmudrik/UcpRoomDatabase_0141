@@ -6,6 +6,14 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2pam_141.repository.RepositoryDosen
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class DosenViewModel(private val repositoryDosen: RepositoryDosen) : ViewModel() {
@@ -57,6 +65,35 @@ class DosenViewModel(private val repositoryDosen: RepositoryDosen) : ViewModel()
     fun resetSnackBarMessage(){
         uiState = uiState.copy(snackBarMessage = null)
     }
+
+    val DosenUIState: StateFlow<DosenUIState> = repositoryDosen.getAllDosen()
+        .filterNotNull() // Memfilter data yang tidak null
+        .map {
+            DosenUIState(
+                listDosen = it.toList(), // Konversi data ke list
+                isLoading = false, // Indikasi data sudah dimuat
+            )
+        }
+        .onStart {
+            emit(DosenUIState(isLoading = true)) // Emit loading state saat mulai
+            delay(900) // Delay untuk simulasi
+        }
+        .catch {
+            emit(
+                DosenUIState(
+                    isLoading = false, // Menonaktifkan loading
+                    isError = true, // Tanda error terjadi
+                    errorState = it.message ?: "Terjadi Kesalahan" // Pesan error
+                )
+            )
+        }
+        .stateIn(
+            scope = viewModelScope, // Scope coroutine ViewModel
+            started = SharingStarted.WhileSubscribed(5000), // Mulai berbagi aliran data
+            initialValue = DosenUIState(
+                isLoading = true, // State awal loading
+            )
+        )
 
 
 
