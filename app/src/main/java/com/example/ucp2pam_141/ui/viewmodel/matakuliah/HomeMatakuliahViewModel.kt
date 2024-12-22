@@ -2,6 +2,7 @@ package com.example.ucp2pam_141.ui.viewmodel.matakuliah
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2pam_141.data.entity.Matakuliah
 import com.example.ucp2pam_141.repository.RepositoryMatakuliah
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -45,3 +46,11 @@ class HomeMatkulViewModel(
             )
         )
 }
+
+// Data class untuk merepresentasikan state UI di halaman utama
+data class HomeUiState(
+    val listMatakuliah: List<Matakuliah> = listOf(), // Daftar mata kuliah
+    val isLoading: Boolean = false, // Status loading
+    val isError: Boolean = false, // Status error
+    val errorMessage: String = " " // Pesan error (kosong secara default)
+)
