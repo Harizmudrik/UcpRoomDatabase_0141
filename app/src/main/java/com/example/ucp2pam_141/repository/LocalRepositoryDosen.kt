@@ -1,6 +1,7 @@
 package com.example.ucp2pam_141.repository
 
 import com.example.ucp2pam_141.data.dao.DosenDao
+import com.example.ucp2pam_141.data.entity.Dosen
 import kotlinx.coroutines.flow.Flow
 
 

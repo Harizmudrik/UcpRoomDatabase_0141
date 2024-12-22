@@ -26,4 +26,5 @@ class LocalRepositoryMatakuliah (
     override suspend fun updateMatakuliah(matakuliah: Matakuliah) { // Memperbarui data mahasiswa
         matakuliahDao.updateMatakuliah(matakuliah) // Memanggil fungsi DAO untuk memperbarui data mahasiswa dari tabel
     }
+}
 
