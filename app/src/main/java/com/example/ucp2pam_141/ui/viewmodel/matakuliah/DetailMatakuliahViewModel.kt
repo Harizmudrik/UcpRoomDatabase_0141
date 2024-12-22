@@ -51,3 +51,12 @@ class DetailMatakuliahViewModel(
         }
     }
 }
+
+data class DetailMatakuliahUiState(
+    val detailMatakuliahUiEvent: MatakuliahEvent = MatakuliahEvent(),
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
+    val errorMessage: String = ""
+){
+
+}
