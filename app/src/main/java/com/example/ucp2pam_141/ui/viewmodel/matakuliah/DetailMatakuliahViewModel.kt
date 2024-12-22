@@ -7,6 +7,7 @@ import com.example.ucp2pam_141.repository.RepositoryMatakuliah
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class DetailMatakuliahViewModel(
     savedStateHandle: SavedStateHandle,
@@ -42,4 +43,11 @@ class DetailMatakuliahViewModel(
             initialValue =
             DetailMatakuliahUiState(isLoading = true)
         )
+    fun deleteMatakuliah() {
+        detailMatakuliahUIState.value.detailMatakuliahUiEvent.toMatakuliahEntity().let {
+            viewModelScope.launch {
+                repositoryMatakuliah.deleteMatakuliah(it)
+            }
+        }
+    }
 }
