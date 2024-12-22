@@ -69,3 +69,17 @@ data class MatakuliahUIState(
     val snackBarMessage: String? = null,
 )
 
+data class FormErrorState(
+    val kode: String? = null,
+    val nama: String? = null,
+    val sks: String? = null,
+    val semester: String? = null,
+    val jenis: String? = null,
+    val DosenPengampu: String? = null,
+) {
+    //untuk validasi
+    fun isValid(): Boolean {
+        return kode == null && nama == null && sks == null && semester == null && jenis == null && DosenPengampu == null
+    }
+}
+
