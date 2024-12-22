@@ -115,6 +115,8 @@ data class FormErrorState(
     val jenisKelamin: String? = null,
 
     ) {
-
-
+    //untuk validasi
+    fun isValid(): Boolean {
+        return nidn == null && nama == null && jenisKelamin == null
+    }
 }
