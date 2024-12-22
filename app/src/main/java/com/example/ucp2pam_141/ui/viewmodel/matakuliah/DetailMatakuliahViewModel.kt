@@ -5,16 +5,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2pam_141.data.entity.Matakuliah
 import com.example.ucp2pam_141.repository.RepositoryMatakuliah
+import com.example.ucp2pam_141.ui.navigation.DestinasiMatakuliahDetail
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class DetailMatakuliahViewModel(
     savedStateHandle: SavedStateHandle,
     private val repositoryMatakuliah: RepositoryMatakuliah,
 ) : ViewModel() {
-
     private val _kode: String = checkNotNull(savedStateHandle[DestinasiMatakuliahDetail.KODE])
 
     val detailMatakuliahUIState: StateFlow<DetailMatakuliahUiState> = repositoryMatakuliah.getMatakuliah(_kode)
@@ -44,6 +49,7 @@ class DetailMatakuliahViewModel(
             initialValue =
             DetailMatakuliahUiState(isLoading = true)
         )
+
     fun deleteMatakuliah() {
         detailMatakuliahUIState.value.detailMatakuliahUiEvent.toMatakuliahEntity().let {
             viewModelScope.launch {
@@ -58,13 +64,14 @@ data class DetailMatakuliahUiState(
     val isLoading: Boolean = false,
     val isError: Boolean = false,
     val errorMessage: String = ""
-){
+) {
     val isUiEventEmpty: Boolean
         get() = detailMatakuliahUiEvent == MatakuliahEvent()
 
     val isUiEventNotEmpty: Boolean
         get() = detailMatakuliahUiEvent != MatakuliahEvent()
 }
+
 
 // Memindahkan data dari Entity ke UI
 fun Matakuliah.toDetailMatakuliahUiEvent(): MatakuliahEvent {
