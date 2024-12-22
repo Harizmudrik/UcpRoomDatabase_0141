@@ -9,5 +9,7 @@ class DetailMatakuliahViewModel(
     private val repositoryMatakuliah: RepositoryMatakuliah,
 ) : ViewModel() {
 
+    private val _kode: String = checkNotNull(savedStateHandle[DestinasiMatakuliahDetail.KODE])
+
 
 }
