@@ -27,4 +27,12 @@ class UpdateMatakuliahViewModel(
         }
     }
 
+    fun updateState(matakuliahEvent: MatakuliahEvent) {
+        updateUiState = updateUiState.copy(
+            matakuliahEvent = matakuliahEvent,
+        )
+    }
+
+
+
 }
