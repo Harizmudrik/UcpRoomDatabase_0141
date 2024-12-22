@@ -5,8 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.ucp2pam_141.data.entity.Matakuliah
 import com.example.ucp2pam_141.repository.RepositoryMatakuliah
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 
 // ViewModel untuk halaman utama mata kuliah
 class HomeMatkulViewModel(
