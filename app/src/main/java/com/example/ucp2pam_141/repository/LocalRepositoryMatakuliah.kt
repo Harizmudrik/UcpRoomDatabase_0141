@@ -18,3 +18,12 @@ class LocalRepositoryMatakuliah (
     override fun getMatakuliah(kode: String): Flow<Matakuliah> {
         return matakuliahDao.getMatakuliah(kode)
     }
+
+    override suspend fun deleteMatakuliah(matakuliah: Matakuliah) {
+        matakuliahDao.deleteMatakuliah(matakuliah) // Memanggil fungsi DAO untuk mengahpus data mahasiswa dari tabel
+    }
+
+    override suspend fun updateMatakuliah(matakuliah: Matakuliah) { // Memperbarui data mahasiswa
+        matakuliahDao.updateMatakuliah(matakuliah) // Memanggil fungsi DAO untuk memperbarui data mahasiswa dari tabel
+    }
+
