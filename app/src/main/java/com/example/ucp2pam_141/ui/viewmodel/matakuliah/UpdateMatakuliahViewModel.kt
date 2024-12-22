@@ -48,5 +48,32 @@ class UpdateMatakuliahViewModel(
         return errorState.isValid()
     }
 
+    fun updateData() {
+        val currentEvent = updateUiState.matakuliahEvent
+
+        if (validateFields()) {
+            viewModelScope.launch {
+                try {
+                    repositoryMatakuliah.updateMatakuliah(currentEvent.toMatakuliahEntity())
+                    updateUiState = updateUiState.copy(
+                        snackBarMessage = "Data Berhasil Diupdate",
+                        matakuliahEvent = MatakuliahEvent(),
+                        isEntryValid = FormErrorState()
+                    )
+                    println("snackBarMessage diatur: ${updateUiState.
+                    snackBarMessage}")
+                } catch (e: Exception) {
+                    updateUiState = updateUiState.copy(
+                        snackBarMessage = "Data Gagal Diupdate"
+                    )
+                }
+            }
+        } else {
+            updateUiState = updateUiState.copy(
+                snackBarMessage = "Data Gagal Diupdate"
+            )
+        }
+    }
+
 
 }
