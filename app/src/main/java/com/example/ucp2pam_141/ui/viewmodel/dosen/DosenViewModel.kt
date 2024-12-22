@@ -107,3 +107,14 @@ data class DosenUIState(
     val isEntryValid: FormErrorState = FormErrorState(),
     val snackBarMessage: String? = null,
 )
+
+
+data class FormErrorState(
+    val nidn: String? = null,
+    val nama: String? = null,
+    val jenisKelamin: String? = null,
+
+    ) {
+
+
+}
