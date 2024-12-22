@@ -16,4 +16,16 @@ class DosenViewModel(private val repositoryDosen: RepositoryDosen) : ViewModel()
         )
     }
 
+    private fun validateFields(): Boolean {
+        val event = uiState.dosenEvent
+        val errorState = FormErrorState(
+            nidn = if (event.nidn.isNotEmpty()) null else "NIDN tidak boleh kosong",
+            nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
+            jenisKelamin = if (event.jenisKelamin.isNotEmpty()) null else "Jenis Kelamin tidak boleh kosong",
+
+            )
+        uiState = uiState.copy(isEntryValid = errorState)
+        return errorState.isValid()
+    }
+
 }
